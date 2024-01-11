@@ -3,13 +3,14 @@ import gradio as gr
 import pandas as pd
 
 
-df = pd.read_csv("sampled.csv")
+df = pd.read_csv("../data/sampled.csv")
+
 
 def predict_car(brand, model, reg_year, mileage, condition, fuel, body, colour):
     # Prepare the input features for prediction
     input_features = pd.DataFrame({
         'mileage': [mileage],
-        'standard_colour':[colour],
+        'standard_colour': [colour],
         'standard_make': [brand],
         'standard_model': [model],
         'vehicle_condition': [condition],
@@ -18,32 +19,34 @@ def predict_car(brand, model, reg_year, mileage, condition, fuel, body, colour):
         'fuel_type': [fuel],
     })
 
-    enc = pickle.load(open("encoder.pkl","rb"))
+    enc = pickle.load(open("../car_price_app/encoder.pkl", "rb"))
     input_features = enc.transform(input_features)
-    model = pickle.load(open("carmodel.pickle","rb"))
+    model = pickle.load(open("../car_price_app/carmodel.pickle", "rb"))
 
     # Make predictions on the input features
     predicted_price = model.predict(input_features)
 
-    return round(predicted_price[0], 2)
+    return "£{}".format(round(predicted_price[0], 2))
 
 
 def search_car_model(search_term):
-	result_df = df[df['standard_make'].str.contains(search_term)]
-	return result_df['standard_model'].drop_duplicates().tolist()
+    result_df = df[df['standard_make'].str.contains(search_term)]
+    return result_df['standard_model'].drop_duplicates().tolist()
+
 
 def search_body(model):
-    result_df = df[df['standard_model']==model]
+    result_df = df[df['standard_model'] == model]
     return result_df['body_type'].drop_duplicates().tolist()
 
+
 def search_fuel(model):
-    result_df = df[df['standard_model']==model]
+    result_df = df[df['standard_model'] == model]
     return result_df['fuel_type'].drop_duplicates().tolist()
 
 
 with gr.Blocks(gr.themes.Soft()) as demo:
     gr.Markdown(
-    """
+        """
     # CAR PRICE PREDICTION
 
     ### QUICK GUIDE
@@ -56,7 +59,8 @@ with gr.Blocks(gr.themes.Soft()) as demo:
     
     """
     )
-    colour = ['BEIGE','BLACK','BLUE','BRONZE','BROWN','GREEN','GREY','MULTICOLOUR','ORANGE','PURPLE','RED','SILVER','WHITE','YELLOW','OTHER COLOUR']
+    colour = ['BEIGE', 'BLACK', 'BLUE', 'BRONZE', 'BROWN', 'GREEN', 'GREY', 'MULTICOLOUR',
+              'ORANGE', 'PURPLE', 'RED', 'SILVER', 'WHITE', 'YELLOW', 'OTHER COLOUR']
     brands = df['standard_make'].drop_duplicates().values.tolist()
     models = df['standard_model'].drop_duplicates().values.tolist()
     car_brand = gr.Dropdown(label="Brand", choices=brands)
@@ -77,29 +81,29 @@ with gr.Blocks(gr.themes.Soft()) as demo:
     model_body = {model: search_body(model) for model in models}
     model_fuel = {model: search_fuel(model) for model in models}
 
-
     def filter_models(car_brand):
         return gr.Dropdown.update(
-            choices=brand_models[car_brand],value=brand_models[car_brand][0]
+            choices=brand_models[car_brand], value=brand_models[car_brand][0]
         ), gr.update(visible=True)
 
-    car_brand.change(filter_models, car_brand,[car_model, details_col])
+    car_brand.change(filter_models, car_brand, [car_model, details_col])
 
     def filter_body(car_model):
         return gr.Dropdown.update(
-            choices=model_body[car_model],value=model_body[car_model][0]
+            choices=model_body[car_model], value=model_body[car_model][0]
         ), gr.update(visible=True)
 
-    car_model.change(filter_body, car_model,[body, details_col])
+    car_model.change(filter_body, car_model, [body, details_col])
 
     def filter_fuel(car_model):
         return gr.Dropdown.update(
-            choices=model_fuel[car_model],value=model_fuel[car_model][0]
+            choices=model_fuel[car_model], value=model_fuel[car_model][0]
         ), gr.update(visible=True)
 
-    car_model.change(filter_fuel, car_model,[fuel, details_col])
+    car_model.change(filter_fuel, car_model, [fuel, details_col])
 
-    generate_btn.click(fn=predict_car, inputs=[car_brand, car_model, year, mileage, condition, fuel, body, colour],outputs=output)
+    generate_btn.click(fn=predict_car, inputs=[
+                       car_brand, car_model, year, mileage, condition, fuel, body, colour], outputs=output)
 
 
 if __name__ == "__main__":
