@@ -3,7 +3,7 @@ import gradio as gr
 import pandas as pd
 
 
-df = pd.read_csv("../data/sampled.csv")
+df = pd.read_csv("data/sampled.csv")
 
 
 def predict_car(brand, model, reg_year, mileage, condition, fuel, body, colour):
@@ -19,9 +19,9 @@ def predict_car(brand, model, reg_year, mileage, condition, fuel, body, colour):
         'fuel_type': [fuel],
     })
 
-    enc = pickle.load(open("../car_price_app/encoder.pkl", "rb"))
+    enc = pickle.load(open("car_price_app/encoder.pkl", "rb"))
     input_features = enc.transform(input_features)
-    model = pickle.load(open("../car_price_app/carmodel.pickle", "rb"))
+    model = pickle.load(open("car_price_app/carmodel.pickle", "rb"))
 
     # Make predictions on the input features
     predicted_price = model.predict(input_features)

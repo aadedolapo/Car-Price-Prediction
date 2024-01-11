@@ -22,7 +22,7 @@ To use this project, follow these steps:
 ```
 2. **Launching the Web Application:**
    
-   Run the `app.py` script from your command line to start the car price prediction web application.
+   Run `gradio car_price_app/app.py` script from your command line to start the car price prediction web application.
 
 3. **Convenient URL Access**: 
    
