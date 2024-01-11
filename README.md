@@ -6,10 +6,10 @@ This repository contains a machine learning project that predicts car prices bas
 
 The repository is structured as follows:
 
-- `sampled.csv`: This directory contains the dataset used for training and evaluation. It includes car listings with relevant features such as make, model, year, mileage, and more.
-- `carmodel.pickle`: This file is a serialized version of the trained machine learning model for car price prediction.
-- `encoder.pkl`: This file contains the serialized version of an encoder or preprocessing object used to transform categorical variables into a numerical format suitable for the machine learning model.
-- `app.py`: This directory contains a web application for car price prediction. Users can input car details, and the application will return an estimated price based on the trained model.
+- `car_price_app/carmodel.pickle`: This file is a serialized version of the trained machine learning model for car price prediction.
+- `car_price_app/encoder.pkl`: This file contains the serialized version of an encoder or preprocessing object used to transform categorical variables into a numerical format suitable for the machine learning model.
+- `car_price_app/app.py`: This directory contains a web application for car price prediction. Users can input car details, and the application will return an estimated price based on the trained model.
+-  `data/sampled.csv`: This directory contains the dataset used for training and evaluation. It includes car listings with relevant features such as make, model, year, mileage, and more.
 - `requirements.txt`: This file lists all the required Python libraries and dependencies to run the project.
 
 ## Usage
