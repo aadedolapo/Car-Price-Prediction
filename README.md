@@ -9,7 +9,7 @@ The repository is structured as follows:
 - `car_price_app/carmodel.pickle`: This file is a serialized version of the trained machine learning model for car price prediction.
 - `car_price_app/encoder.pkl`: This file contains the serialized version of an encoder or preprocessing object used to transform categorical variables into a numerical format suitable for the machine learning model.
 - `car_price_app/app.py`: This directory contains a web application for car price prediction. Users can input car details, and the application will return an estimated price based on the trained model.
--  `data/sampled.csv`: This directory contains the dataset used for training and evaluation. It includes car listings with relevant features such as make, model, year, mileage, and more.
+- `data/sampled.csv`: This directory contains the dataset used for training and evaluation. It includes car listings with relevant features such as make, model, year, mileage, and more.
 - `requirements.txt`: This file lists all the required Python libraries and dependencies to run the project.
 
 ## Usage
@@ -20,14 +20,15 @@ To use this project, follow these steps:
 ```json
     pip install -r requirements.txt 
 ```
-2. **Launching the Web Application:**
+2. **Launching the Web Application from Terminal:**
    
    Run `gradio car_price_app/app.py` script from your command line to start the car price prediction web application.
+
+   ***NOTE***: *Make sure you are in the project directory.*
 
 3. **Convenient URL Access**: 
    
    As the application starts, a URL will be displayed in the command line interface. Copy the URL and paste it directly into your browser to access the application. 
-
 
 ## Quick Guide 
 
@@ -37,6 +38,6 @@ To enhance the user experience, several engineering techniques were implemented:
 
 2. Similarly, when you choose a car model, the available body types and fuel types will be updated in the body types and fuel types dropdown menus, respectively.
 
-**NOTE**: The visibility of the car details section is updated when a brand is selected. This means that when you choose a brand, the additional car details section will become visible, including the year, mileage, and other relevant fields.
+***NOTE***: The visibility of the car details section is updated when a brand is selected. This means that when you choose a brand, the additional car details section will become visible, including the year, mileage, and other relevant fields.
 
 [**WEBAPP**](https://huggingface.co/spaces/theadedolapo/Car_price_prediction)
