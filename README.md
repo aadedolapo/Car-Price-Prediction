@@ -1,4 +1,4 @@
-# Car-Price-Prediction
+# Car-Price-Prediction App
 
 
 <p style="text-align:center;">
