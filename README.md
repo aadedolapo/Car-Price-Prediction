@@ -1,5 +1,10 @@
 # Car-Price-Prediction
 
+
+<p style="text-align:center;">
+    <img src="header.jpg">
+</p>
+
 This repository contains a machine learning project that predicts car prices based on various features. The project utilizes a dataset of car listings and employs a regression model to estimate the price of a car given its attributes.
 
 ## Project Structure
