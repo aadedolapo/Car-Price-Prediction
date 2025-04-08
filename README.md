@@ -5,7 +5,9 @@
     <img src="header.jpg">
 </p>
 
+
 This repository contains a machine learning project that predicts car prices based on various features. The project utilizes a dataset of car listings and employs a regression model to estimate the price of a car given its attributes.
+
 
 ## Project Structure
 
@@ -16,6 +18,7 @@ The repository is structured as follows:
 - `car_price_app/app.py`: This directory contains a web application for car price prediction. Users can input car details, and the application will return an estimated price based on the trained model.
 - `data/sampled.csv`: This directory contains the dataset used for training and evaluation. It includes car listings with relevant features such as make, model, year, mileage, and more.
 - `requirements.txt`: This file lists all the required Python libraries and dependencies to run the project.
+
 
 ## Usage
 

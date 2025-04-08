@@ -3,7 +3,7 @@ import gradio as gr
 import pandas as pd
 
 from beartype import beartype
-from car_price_app.predict_price import Predictor
+from car_predictor.predict_price import Predictor
 
 
 df = pd.read_csv("data/sampled.csv")
@@ -86,21 +86,21 @@ with gr.Blocks(gr.themes.Soft()) as demo:
     model_fuel = {model: search_fuel(model) for model in models}
 
     def filter_models(car_brand):
-        return gr.Dropdown.update(
+        return gr.update(
             choices=brand_models[car_brand], value=brand_models[car_brand][0]
         ), gr.update(visible=True)
 
     car_brand.change(filter_models, car_brand, [car_model, details_col])
 
     def filter_body(car_model):
-        return gr.Dropdown.update(
+        return gr.update(
             choices=model_body[car_model], value=model_body[car_model][0]
         ), gr.update(visible=True)
 
     car_model.change(filter_body, car_model, [body, details_col])
 
     def filter_fuel(car_model):
-        return gr.Dropdown.update(
+        return gr.update(
             choices=model_fuel[car_model], value=model_fuel[car_model][0]
         ), gr.update(visible=True)
 
